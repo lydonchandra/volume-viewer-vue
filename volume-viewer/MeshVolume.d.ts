@@ -1,0 +1,33 @@
+export default class MeshVolume {
+    constructor(volume: any);
+    volume: any;
+    meshRoot: any;
+    meshPivot: any;
+    meshrep: any[];
+    cleanup(): void;
+    setVisible(isVisible: any): void;
+    doRender(canvas: any): void;
+    get3dObject(): any;
+    onChannelData(batch: any): void;
+    setScale(scale: any): void;
+    scale: any;
+    setFlipAxes(flipX: any, flipY: any, flipZ: any): void;
+    setTranslation(vec3xyz: any): void;
+    setRotation(quaternion: any): void;
+    setResolution(x: any, y: any): void;
+    setOrthoThickness(value: any): void;
+    setAxisClip(axis: any, minval: any, maxval: any, isOrthoAxis: any): void;
+    updateMeshColors(channel_colors: any): void;
+    createMaterialForChannel(rgb: any, alpha: any, transp: any): any;
+    createMeshForChannel(channelIndex: any, colorrgb: any, isovalue: any, alpha: any, transp: any): any;
+    updateIsovalue(channel: any, value: any): void;
+    getIsovalue(channel: any): any;
+    updateOpacity(channel: any, value: any): void;
+    hasIsosurface(channel: any): boolean;
+    createIsosurface(channel: any, color: any, value: any, alpha: any, transp: any): void;
+    destroyIsosurface(channel: any): void;
+    saveChannelIsosurface(channelIndex: any, type: any, namePrefix: any): void;
+    exportSTL(input: any, fname: any): void;
+    exportGLTF(input: any, fname: any): void;
+    generateIsosurfaceGeometry(channelIndex: any, isovalue: any): any[];
+}
