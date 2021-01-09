@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "declaration-clean": "rimraf volume-viewer/**/*.d.ts",
+    "declaration": "yarn declaration-clean && npx typescript -p volume-viewer"
   },
   "dependencies": {
     "core-js": "^3.6.5",
