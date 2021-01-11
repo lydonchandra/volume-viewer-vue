@@ -162,7 +162,7 @@ class TrackballControls extends EventDispatcher {
 
     if (this.autoRotate && this._state === this.STATE.NONE) {
       // rotate about vertical axis
-      angle = getAutoRotationAngle(delta);
+      angle = this.getAutoRotationAngle(delta);
       dx = angle;
       dy = 0;
       moveDirection.set(angle, 0, 0);

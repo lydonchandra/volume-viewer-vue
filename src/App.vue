@@ -2,19 +2,16 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <View3dVue />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue"
 import View3dVue from "@/components/View3dVue.vue";
 
 
 @Component({
   components: {
-    HelloWorld,
     View3dVue
   }
 })

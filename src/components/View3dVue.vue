@@ -1,7 +1,5 @@
 <template>
-  <span>
-    <div ref="view3d" id="view3d">view3d</div>
-  </span>
+    <div ref="view3d" id="view3d" :style="styleCss"></div>
 </template>
 
 <script lang="ts">
@@ -10,17 +8,32 @@ import { View3d, Volume, VolumeLoader } from "../../volume-viewer";
 
 @Component
 export default class View3dVue extends Vue {
-  @Prop() private msg!: string;
-  view3dInst!: View3d;
+  view3d!: View3d;
 
   constructor() {
     super();
   }
 
+  get width() {
+    const buffer = 30;
+    return window.innerWidth - buffer ;
+  }
+
+  get height() {
+    const buffer = 300;
+    return window.innerHeight - buffer;
+  }
+
+  get styleCss() {
+    return {
+      width : `${this.width}px`,
+      height: `${this.height}px`,
+    }
+  }
+
   mounted() {
-    console.log(this.$refs);
-    // this.view3dInst = new View3d(document.getElementById("view3d")!, {})
-    this.view3dInst = new View3d(this.$refs.view3d as HTMLElement, {});
+
+    this.view3d = new View3d(this.$refs.view3d as HTMLElement, {});
 
     const AICS_CELL_URL =
       "https://s3-us-west-2.amazonaws.com/bisque.allencell.org/v1.4.0/Cell-Viewer_Thumbnails/AICS-11";
@@ -32,7 +45,7 @@ export default class View3dVue extends Vue {
       .then(value => value.json())
       .then(json => {
         const volume = new Volume(json);
-        this.view3dInst.addVolume(volume);
+        this.view3d.addVolume(volume);
         json.images = json.images.map((img: any) => ({
           ...img,
           name: `${AICS_CELL_URL}/${img.name}`
@@ -44,18 +57,19 @@ export default class View3dVue extends Vue {
           (url, channelIndex) => {
             volume.channels[channelIndex].lutGenerator_percentiles(0.5, 0.998);
 
-            this.view3dInst.setVolumeChannelEnabled(
+            this.view3d.setVolumeChannelEnabled(
               volume,
               channelIndex,
               channelIndex < 3
             );
-            this.view3dInst.updateActiveChannels(volume);
+            this.view3d.updateActiveChannels(volume);
 
-            this.view3dInst.updateLuts(volume);
+            this.view3d.updateLuts(volume);
 
-            this.view3dInst.setCameraMode("3D");
-            this.view3dInst.updateDensity(volume, 0.05);
-            this.view3dInst.updateExposure(0.75);
+            this.view3d.setCameraMode("3D");
+            this.view3d.updateDensity(volume, 0.05);
+            this.view3d.updateExposure(0.75);
+            this.view3d.setAutoRotate(true)
           }
         );
       });
@@ -64,8 +78,5 @@ export default class View3dVue extends Vue {
 </script>
 
 <style scoped>
-#view3d {
-  width: 800px;
-  height: 800px;
-}
+
 </style>
