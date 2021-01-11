@@ -138,8 +138,8 @@ export class ThreeJsPanel {
 
     this.camera = this.perspectiveCamera;
     this.controls = this.perspectiveControls;
-
-    this.initVR();
+    //TODO: re-enable initVR in Vuejs Typescript
+    //this.initVR();
 
     this.setupAxisHelper();
   }

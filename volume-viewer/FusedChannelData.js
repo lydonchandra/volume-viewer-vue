@@ -38,7 +38,8 @@ export default class FusedChannelData {
     this.maskTexture.unpackAlignment = 1;
 
     // force single threaded use even if webworkers are available
-    this.useSingleThread = false;
+    //TODO: enable WebWorker in Vuejs typescript
+    this.useSingleThread = true;
 
     // thread control
     this.fuseWorkersWorking = 0;

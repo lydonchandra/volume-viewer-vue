@@ -68,7 +68,7 @@ export class View3d {
      * @param {Volume} volume
      * @param {VolumeDisplayOptions} options
      */
-    addVolume(volume: any, options: VolumeDisplayOptions): void;
+    addVolume(volume: any, options?: VolumeDisplayOptions): void;
     /**
      * Apply a set of display options to a given channel of a volume
      * @param {Volume} volume
